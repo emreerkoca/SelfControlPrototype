@@ -59,7 +59,7 @@ namespace SelfControlPrototype.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notification",
+                name: "Notification", 
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
