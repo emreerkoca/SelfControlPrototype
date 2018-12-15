@@ -9,7 +9,7 @@ using SelfControlPrototype.DataContext;
 
 namespace SelfControlPrototype.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20181212190918_Initial-Create")]
     partial class InitialCreate
     {

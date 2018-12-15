@@ -8,7 +8,7 @@ using SelfControlPrototype.DataContext;
 
 namespace SelfControlPrototype.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

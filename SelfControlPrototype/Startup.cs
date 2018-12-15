@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SelfControlPrototype.DataContext;
+using SelfControlPrototype.Services;
 
 namespace SelfControlPrototype
 {
@@ -27,7 +28,7 @@ namespace SelfControlPrototype
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = @"Server=(localdb)\mssqllocaldb;Database=SelfControlPrototype;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<AppDbContext>
+            services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(connection));
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -37,6 +38,7 @@ namespace SelfControlPrototype
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient<IWordService, WordService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
