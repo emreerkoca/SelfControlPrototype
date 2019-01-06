@@ -26,11 +26,39 @@ namespace SelfControlPrototype.Services
             return saveResult == 1;
         }
 
+        public async Task<bool> DeleteWord(int id)
+        {
+            var word = await _context.Word.Where(x => x.Id == id).SingleOrDefaultAsync();
+            _context.Remove(word);
+            var result = _context.SaveChanges();
+
+            return result == 1;
+        }
+
+        public async Task<Word> GetWordByIdAsync(int id)
+        {
+            return await _context.Word.Where(x => x.Id == id).SingleOrDefaultAsync();
+        }
+
         public async Task<List<Word>> GetWordListAsync()
         {
             List<Word> wordList = new List<Word>();
 
             return (await _context.Word.ToListAsync());
+        }
+
+        public async Task<bool> UpdateWord(Word word)
+        {
+            Word selectedWord = await _context.Word.Where(x => x.Id == word.Id).SingleOrDefaultAsync();
+
+            if (selectedWord == null)
+                return false; //Write Log Message
+
+            selectedWord.OriginalWord = word.OriginalWord;
+            selectedWord.TranslatedWord = word.TranslatedWord;
+            selectedWord.Sentence = word.Sentence;
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
         }
     }
 }
