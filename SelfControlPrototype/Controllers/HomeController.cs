@@ -108,5 +108,16 @@ namespace SelfControlPrototype.Controllers
 
         }
         #endregion
+
+        #region Jump Word
+        public async Task<ActionResult> JumpWord()
+        {
+            Word word = new Word();
+            word = await _wordService.GetRandomWordAsync();
+
+            return PartialView("JumpWord",word);
+        }
+
+        #endregion
     }
 }

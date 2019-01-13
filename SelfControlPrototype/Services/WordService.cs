@@ -42,10 +42,14 @@ namespace SelfControlPrototype.Services
 
         public async Task<List<Word>> GetWordListAsync()
         {
-            List<Word> wordList = new List<Word>();
-
             return (await _context.Word.ToListAsync());
         }
+
+        public async Task<Word> GetRandomWordAsync()
+        {
+            return await _context.Word.OrderBy(r => Guid.NewGuid()).Skip(2).Take(1).FirstAsync();
+        }
+
 
         public async Task<bool> UpdateWord(Word word)
         {

@@ -13,5 +13,6 @@ namespace SelfControlPrototype.Services
         Task<bool> DeleteWord(int id);
         Task<List<Word>> GetWordListAsync();
         Task<Word> GetWordByIdAsync(int id);
+        Task<Word> GetRandomWordAsync();
     }
 }

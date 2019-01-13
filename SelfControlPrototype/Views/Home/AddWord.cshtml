@@ -1,29 +1,29 @@
-﻿@model Word 
+﻿@model Word
 @{
     ViewData["Title"] = "Word";
 }
-<h2>@ViewData["Title"]</h2>
+<div class="text-center m-t-30">You can add a new word, meaning of the word in the second language and an example sentence</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="myModalContent"></div>
+        </div>
+    </div>
+
+</div>
 
 <form asp-action="AddWord" asp-controller="Home" class="form form-horizontal" method="post">
     <div class="edit-items">
-        <div class="col-md-6 col-xs-12">
-            <div class="col-md-6 col-xs-12">
-                <label asp-for="OriginalWord">Original Word</label>
+        <div class="col-md-6 col-xs-12 center">
+            <div class="col-md-12">
+                <input asp-for="OriginalWord" id="OriginalWord" placeholder="Word" />
             </div>
-            <div class="col-md-6 col-xs-12">
-                <input asp-for="OriginalWord" id="OriginalWord" />
+            <div class="col-md-12">
+                <input asp-for="TranslatedWord" id="TranslatedWord" placeholder="Mean" />
             </div>
-            <div class="col-md-6">
-                <label asp-for="TranslatedWord">Translated Word</label>
-            </div>
-            <div class="col-md-6">
-                <input asp-for="TranslatedWord" id="TranslatedWord" />
-            </div>
-            <div class="col-md-6">
-                <label asp-for="Sentence">Sentence</label>
-            </div>
-            <div class="col-md-6">
-                <textarea asp-for="Sentence" id="Sentence" rows="4" maxlength="140"></textarea>
+            <div class="col-md-12">
+                <textarea asp-for="Sentence" id="Sentence" rows="4" maxlength="140" placeholder="Example Sentence"></textarea>
             </div>
             <div class="col-lg-offset-6 col-md-6">
                 <button type="submit" class="custom-button put-it-right">Add</button>
@@ -33,6 +33,35 @@
     </div>
 </form>
 
+<div>
+    <a href="javascript:void(0);" class="jump-word btn btn-info">Jump a Word</a>
+</div>
+
+
+@section Scripts
+    {
+    <script>
+        var jumpWordPostBackURL = '/Home/JumpWord';
+        $(function () {
+            $(".jump-word").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: jumpWordPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+
+                        $('#myModalContent').html("");
+                        $('#myModal').modal('show');
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed!");
+                    }
+
+                });
+            });
+        });
+    </script>
+}
 
 
 
