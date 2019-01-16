@@ -6,17 +6,17 @@
         <h4 class="modal-title">Details</h4>
     </div>
     <div class="modal-body">
-        <table class="tablemodel">
-
-            <tr>
-            <tr>
-                Notes:
-            </tr>
-            <tr>
-                @Html.DisplayFor(Model => Model.OriginalWord)
-            </tr>
-
-        </table>
+        <div>
+            <div class="col-md-12">
+                <input asp-for="OriginalWord" id="OriginalWord" placeholder="Word" />
+            </div>
+            <div class="col-md-12">
+                <input asp-for="TranslatedWord" id="TranslatedWord" placeholder="Mean" />
+            </div>
+            <div class="col-md-12">
+                <textarea asp-for="Sentence" id="Sentence" rows="4" maxlength="140" placeholder="Example Sentence"></textarea>
+            </div>
+        </div>          
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

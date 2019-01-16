@@ -41,6 +41,9 @@
 @section Scripts
     {
     <script>
+
+
+
         var jumpWordPostBackURL = '/Home/JumpWord';
         $(function () {
             $(".jump-word").click(function () {
@@ -48,9 +51,9 @@
                     type: "GET",
                     url: jumpWordPostBackURL,
                     contentType: "application/json; charset=utf-8",
-                    success: function () {
+                    success: function (data) {
 
-                        $('#myModalContent').html("");
+                        $('#myModalContent').html(data);    
                         $('#myModal').modal('show');
                     },
                     error: function () {
